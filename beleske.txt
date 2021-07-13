@@ -1,0 +1,4 @@
+- poboljsati form-u
+- dodati authentication
+- route i stranica za ratinge (your ratings)
+- kada se refresh-uje stranica na /most-popular home nav item postaje aktivan (u navbar-u ispraviti to) - popravljeno je, ali moze i bolje (koristi se slpice(26) i tako neke gluposti :D)

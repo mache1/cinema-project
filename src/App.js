@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { connect } from 'react-redux';
+import { Route, Switch, Redirect } from 'react-router-dom';
+
+import Form from './components/Form/Form';
+import Navbar from './components/NavBar/NavBar';
+import Home from './components/Home/Home';
+import MostPopular from './components/MostPopular/MostPopular';
+
+const App = (props) => {
+    return (
+        <div>
+            <Form />
+            <Navbar routePath={props.route} />
+            <Switch>
+                <Route path="/home" exact component={Home} />
+                <Route path="/most-popular" exact component={MostPopular} />
+                <Redirect from="/" to="/home" />
+            </Switch>
+            {/* footer ce ici ovde */}
+            {console.log(window.location.href)}
+            {console.log(window.location.href.slice(21))}
+        </div>
+    );
 }
 
-export default App;
+const mapStateToProps = state => {
+    return {
+        route: state.route
+    }
+}
+
+export default connect(mapStateToProps, null)(App);
