@@ -38,14 +38,19 @@ class MovieCards extends Component {
 
     render() {
         const movieCards = this.props.results.map((movie, index) => {
-            const { title, id, poster_path, vote_average } = movie;
+            console.log(movie);
+            const { title, id, poster_path, vote_average, overview } = movie;
+            // ovde :D
             let imageUrl = 'https://image.tmdb.org/t/p/w500' + poster_path;
+            if (document.querySelector('body').clientWidth <= 600)
+                imageUrl = 'https://image.tmdb.org/t/p/w200' + poster_path;
             if (index >= this.props.numOfMovies) return '';
             return <MovieCard
                 title={title}
                 key={id}
                 rating={vote_average}
-                imageUrl={imageUrl} />
+                imageUrl={imageUrl}
+                overview={overview} />
         });
 
         return (

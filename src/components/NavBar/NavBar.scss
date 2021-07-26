@@ -6,20 +6,17 @@ $orange: #FE6D00;
     justify-content: space-between;
     align-items: center;
     background-color: #000;
-    // border-top: 2px solid #000;
-    // border-bottom: 2px solid #000;
     color: #fff;
     font-size: 1.5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
 
-    // position: fixed;
-    // top: 0;
-    // left: 0;
-    // width: 100%;
-    // z-index: 100;
-
-    & > a {
+    &>a {
         cursor: pointer;
-        height: 85px; // 
+        height: 85px;
     }
 
     ul {
@@ -34,7 +31,7 @@ $orange: #FE6D00;
 
             transition: 0.3s ease;
 
-            & > * {
+            &>* {
                 cursor: pointer;
             }
 
@@ -43,22 +40,6 @@ $orange: #FE6D00;
                 padding: 20px 0;
                 color: #fff;
                 text-decoration: none;
-            }
-
-            button {
-                font-size: 1.5rem;
-                color: #fff;
-                // border: 1px solid #000;
-                border: none;
-                background-color: $orange;
-                padding: 5px 20px;
-                cursor: pointer;
-                transition: 0.3s ease;
-
-                &:hover {
-                    color: $orange;
-                    background-color: #fff;
-                }
             }
         }
 
@@ -83,10 +64,11 @@ $orange: #FE6D00;
         display: none;
         font-size: 3rem;
         margin-right: 20px;
+        cursor: pointer;
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
     .nav {
         ul {
             display: none;
@@ -94,6 +76,25 @@ $orange: #FE6D00;
 
         i {
             display: block;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .nav {
+
+        &>a {
+            text-align: left;
+            height: 65px;
+
+            img {
+                width: 75%;
+                margin: 0 auto;
+            }
+        }
+
+        i {
+            font-size: 2rem;
         }
     }
 }

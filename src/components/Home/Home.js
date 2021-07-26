@@ -1,7 +1,16 @@
 import './Home.scss';
 
-import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
+import {
+    NavLink
+}
+
+    from 'react-router-dom';
+
+import {
+    connect
+}
+
+    from 'react-redux';
 
 import MovieCards from '../../containers/MovieCards/MovieCards';
 import MostPopularCards from '../MostPopularCards/MostPopularCards';
@@ -25,36 +34,50 @@ const Home = (props) => {
         }
     }
 
-    let link = <NavLink
-        className="see-more"
-        onClick={props.mostPopular}
-        to="/most-popular">See More +</NavLink>;
+    let link = <NavLink className="see-more"
 
-    let movieCards = <MostPopularCards
-        numOfMovies="4" />;
+        onClick={
+            props.mostPopular
+        }
+
+        to="/most-popular"><button>See More+</button></NavLink>;
+
+    let movieCards = <MostPopularCards numOfMovies="4" />;
 
     if (props.searchValue) {
         link = '';
-        movieCards = <MovieCards
-            value={props.searchValue}
+
+        movieCards = <MovieCards value={
+            props.searchValue
+        }
+
             numOfMovies="8" />
     }
 
-    return (
-        <div className="home">
-            <form onSubmit={onSubmitHandler}>
-                <input
-                    onKeyPress={onEnterPress}
-                    className="search-input"
-                    type="text"
-                    placeholder="Search for movies..." />
+    return (<div className="home"> <form onSubmit={
+        onSubmitHandler
+    }
 
-                <i onClick={submitHandler} className="fas fa-search"></i>
-            </form>
-            {movieCards}
-            {link}
-        </div>
-    );
+    > <input onKeyPress={
+        onEnterPress
+    }
+
+        className="search-input"
+        type="text"
+
+        placeholder="Search for movies..." /> <i onClick={
+            submitHandler
+        }
+
+            className="fas fa-search"></i> </form> {
+            movieCards
+        }
+
+        {
+            link
+        }
+
+    </div>);
 }
 
 const mapStateToProps = state => {
@@ -66,8 +89,16 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        mostPopular: () => dispatch({ type: 'MOST_POPULAR' }),
-        setSearchValue: (val) => dispatch({ type: 'SET_SEARCH_VALUE', value: val })
+        mostPopular: () => dispatch({
+            type: 'MOST_POPULAR'
+        }
+
+        ),
+        setSearchValue: (val) => dispatch({
+            type: 'SET_SEARCH_VALUE', value: val
+        }
+
+        )
     }
 }
 

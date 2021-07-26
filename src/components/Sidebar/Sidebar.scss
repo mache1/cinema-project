@@ -1,0 +1,38 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    height: 25vh;
+    text-align: right;
+    background-color: #fff;
+    transform: translateY(-500px);
+    transition: transform 0.3s ease;
+    z-index: 50;
+
+    ul {
+        li {
+            color: #fff;
+            margin: 25px 0;
+            font-size: 1.5rem;
+            text-align: center;
+
+            a {
+                color: #000;
+            }
+        }
+    }
+
+    &.active {
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 500px) {
+    .sidebar {
+        top: 65px;
+    }
+}

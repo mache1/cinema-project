@@ -1,10 +1,9 @@
+import { useEffect } from 'react';
 import './NavBar.scss';
 import logo from '../../assets/logo.jpg';
 
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-import { useEffect } from 'react';
 
 const NavBar = (props) => {
     const navItemActiveHandler = (e) => {
@@ -46,23 +45,12 @@ const NavBar = (props) => {
             e.target.parentElement.classList.remove('hovered');
     }
 
-    const loginHandler = () => {
-        document.querySelector('.form').style.display = "inline-block";
-
-        // ovde bih mogao da postavljam atribute forme (posebno za login i register)
-        // npr setAttribute('nes', 'nes')
-    }
-
-    const registerHandler = () => {
-        document.querySelector('.form').style.display = "inline-block";
-    }
-
     return (
-        <div className="nav section">
+        <div className="nav">
             <a href="/home">
                 <img className="nav__logo logo" src={logo} alt="logo" /></a>
             <ul>
-                <li className="nav__item">
+                <li className="nav__item active">
                     <NavLink
                         id="home"
                         onMouseOver={linkMouseOverHandler}
@@ -79,11 +67,8 @@ const NavBar = (props) => {
                         onClick={navItemActiveHandler}
                         to="most-popular">Most Popular</NavLink>
                 </li>
-
-                <li className="nav__item"><button onClick={loginHandler} className="nav__button">Login</button></li>
-                <li className="nav__item"><button onClick={registerHandler} className="nav__button">Register</button></li>
             </ul>
-            <i className="fas fa-bars"></i>
+            <i className="fas fa-bars" onClick={props.toggleSidebar}></i>
         </div>
     );
 }
@@ -97,7 +82,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         home: () => dispatch({ type: 'HOME' }),
-        mostPopular: () => dispatch({ type: 'MOST_POPULAR' })
+        mostPopular: () => dispatch({ type: 'MOST_POPULAR' }),
+        auth: () => dispatch({ type: 'AUTH' })
     }
 }
 

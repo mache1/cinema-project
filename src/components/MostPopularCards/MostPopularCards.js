@@ -20,14 +20,17 @@ const MostPopularCards = (props) => {
     });
 
     const movieCards = props.results.map((movie, index) => {
-        const { title, id, poster_path, vote_average } = movie;
+        const { title, id, poster_path, vote_average, overview } = movie;
         let imageUrl = 'https://image.tmdb.org/t/p/w500' + poster_path;
-        if (index >= props.numOfMovies) return null; // OVDE ////////////////////////////////////////////
+        if (document.querySelector('body').clientWidth <= 600)
+            imageUrl = 'https://image.tmdb.org/t/p/w200' + poster_path;
+        if (index >= props.numOfMovies) return null;
         return <MovieCard
             title={title}
             key={id}
             rating={vote_average}
-            imageUrl={imageUrl} />
+            imageUrl={imageUrl}
+            overview={overview} />
     });
 
     return (

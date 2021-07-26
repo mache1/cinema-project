@@ -10,3 +10,9 @@
         color: blue;
     }
 }
+
+@media (max-width: 500px) {
+    .movie-cards {
+        flex-wrap: nowrap;
+    }
+}

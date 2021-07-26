@@ -1,3 +1,4 @@
+- dodati sidebar
 - poboljsati form-u
 - dodati authentication
 - route i stranica za ratinge (your ratings)
