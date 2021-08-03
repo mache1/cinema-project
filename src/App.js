@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './App.scss';
 
-import { connect } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Overlay from './components/Overlay/Overlay';
@@ -22,22 +21,15 @@ const App = (props) => {
             <Overlay showOverlay={sidebar} toggleSidebar={toggleSidebar} />
             <Sidebar showSidebar={sidebar} toggleSidebar={toggleSidebar} />
             <header>
-                <Navbar routePath={props.route} toggleSidebar={toggleSidebar} />
+                <Navbar toggleSidebar={toggleSidebar} />
             </header>
             <Switch>
                 <Route path="/home" exact component={Home} />
                 <Route path="/most-popular" exact component={MostPopular} />
                 <Redirect from="/" to="/home" />
             </Switch>
-            {/* footer ce ici ovde */}
         </div>
     );
 }
 
-const mapStateToProps = state => {
-    return {
-        route: state.route
-    }
-}
-
-export default connect(mapStateToProps, null)(App);
+export default App;

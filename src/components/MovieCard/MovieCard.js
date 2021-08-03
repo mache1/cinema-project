@@ -1,9 +1,15 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import './MovieCard.scss'
 
 const MovieCard = (props) => {
+    const [overview, setOverview] = useState(false);
+    const [moreInfo, setMoreInfo] = useState(false);
+
     useEffect(() => {
+        if (window.innerWidth < 900)
+            setMoreInfo(true)
+
         const rating = document.querySelectorAll('.rating');
         rating.forEach(i => {
             if (i.innerText > 1 && i.innerText < 3)
@@ -20,33 +26,25 @@ const MovieCard = (props) => {
 
             else
                 i.style.display = 'none';
-        })
-    });
+        });
+    }, []);
 
-    const onMouseOverHandler = (e) => {
-        if (window.innerWidth > 900) {
-            e.target.closest('.movie-card').querySelector('.more-info-btn').style.opacity = 1;
-            e.target.closest('.movie-card').querySelector('.more-info-btn').style.zIndex = 10;
-        }
+    const onMouseOverHandler = () => {
+        if (window.innerWidth > 900)
+            setMoreInfo(true);
     }
 
-    const onMouseOutHandler = (e) => {
-        if (window.innerWidth > 900) {
-            e.target.closest('.movie-card').querySelector('.more-info-btn').style.opacity = 0;
-            e.target.closest('.movie-card').querySelector('.more-info-btn').style.zIndex = -1;
-        }
+    const onMouseOutHandler = () => {
+        if (window.innerWidth > 900)
+            setMoreInfo(false);
     }
 
-    const showOverviewHandler = (e) => {
-        e.target.closest('.movie-card').querySelector('.overview').style.opacity = 1;
-        e.target.closest('.movie-card').querySelector('.overview').style.zIndex = 20;
-        e.target.style.opacity = 0;
+    const showOverviewHandler = () => {
+        setOverview(true);
     }
 
-    const closeOverviewHandler = (e) => {
-        e.target.closest('.movie-card').querySelector('.overview').style.opacity = 0;
-        e.target.closest('.movie-card').querySelector('.overview').style.zIndex = -1;
-        e.target.closest('.movie-card').querySelector('.more-info-btn').style.opacity = 1;
+    const closeOverviewHandler = () => {
+        setOverview(false);
     }
 
     return (
@@ -60,9 +58,25 @@ const MovieCard = (props) => {
             }}>
 
             <h1>{props.title}</h1>
-            <p className="overview">{props.overview} <button className="close-overview-btn" onClick={closeOverviewHandler}>Close</button></p>
+            <p className="overview" style={{
+                opacity: overview ? 1 : 0,
+                zIndex: overview ? 20 : -1
+            }}>
+                {props.overview}
+                <button
+                    className="close-overview-btn"
+                    onClick={closeOverviewHandler}>Close</button>
+            </p>
+
             <p className="rating">{props.rating}</p>
-            <button className="more-info-btn" onClick={showOverviewHandler}>More information</button>
+
+            <button
+                style={{
+                    opacity: moreInfo ? 1 : 0,
+                    zIndex: moreInfo ? 10 : -1
+                }}
+                className="more-info-btn"
+                onClick={showOverviewHandler}>More information</button>
         </div>
     );
 }

@@ -28,9 +28,7 @@ class MovieCards extends Component {
             axios.get(searchUrl)
                 .then(response => {
                     let updatedResults = [];
-                    response.data.results.forEach(i => {
-                        updatedResults.push(i);
-                    });
+                    response.data.results.forEach(i => updatedResults.push(i));
                     this.props.updateResults(updatedResults);
                 });
         }
@@ -38,13 +36,11 @@ class MovieCards extends Component {
 
     render() {
         const movieCards = this.props.results.map((movie, index) => {
-            console.log(movie);
             const { title, id, poster_path, vote_average, overview } = movie;
-            // ovde :D
             let imageUrl = 'https://image.tmdb.org/t/p/w500' + poster_path;
             if (document.querySelector('body').clientWidth <= 600)
                 imageUrl = 'https://image.tmdb.org/t/p/w200' + poster_path;
-            if (index >= this.props.numOfMovies) return '';
+            if (index >= this.props.numOfMovies) return null;
             return <MovieCard
                 title={title}
                 key={id}
@@ -63,7 +59,8 @@ class MovieCards extends Component {
 
 const mapStateToProps = state => {
     return {
-        results: state.results
+        results: state.results,
+        value: state.searchValue
     }
 }
 

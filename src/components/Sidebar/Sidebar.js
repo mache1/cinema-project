@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import './Sidebar.scss';
 
 import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 const Sidebar = (props) => {
     useEffect(() => {

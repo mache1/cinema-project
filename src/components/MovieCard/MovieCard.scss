@@ -80,6 +80,11 @@
             font-size: 1.2rem;
         }
 
+        .overview {
+            font-size: 0.8rem;
+            width: 100%;
+        }
+
         .rating {
             font-size: 1rem;
         }
@@ -94,11 +99,6 @@
 @media (max-width: 600px) {
     .movie-card {
         height: 400px;
-    }
-
-    .overview {
-        font-size: 0.8rem;
-        width: 100%;
     }
 }
 
