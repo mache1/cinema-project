@@ -1,6 +1,6 @@
 ## Cinema Project
 
-React app fetching an Movie API and displaying its content.
+### React app fetching an Movie API and displaying its content.
 
 ### You can
 - Search for movies
