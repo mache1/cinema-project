@@ -1,30 +1,41 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './NavBar.scss';
 import logo from '../../assets/logo.jpg';
 
 import { useLocation, NavLink } from 'react-router-dom';
 
 const NavBar = (props) => {
+    const [link1, setLink1] = useState(false);
+    const [link2, setLink2] = useState(false);
     const location = useLocation();
 
     useEffect(() => {
-        document.querySelectorAll('.nav__item').forEach(i => i.classList.remove('active'));
+        if (location.pathname === '/' || location.pathname === '/home') {
+            setLink1(false);
+            setLink2(false);
+            setLink1(true);
+        }
 
-        if (location.pathname === '/' || location.pathname === '/home')
-            document.getElementById('home').parentElement.classList.add('active');
+        else if (location.pathname === '/most-popular') {
+            setLink1(false);
+            setLink2(false);
+            setLink2(true);
+        }
 
-        else if (location.pathname === '/most-popular')
-            document.getElementById('most-popular').parentElement.classList.add('active');
-    });
+    }, [setLink1, setLink2, location]);
 
     const linkMouseOverHandler = (e) => {
-        if (e.target.nodeName === "A")
-            e.target.parentElement.classList.add('hovered');
+        if (e.target.id === "home")
+            setLink1(true);
+        else if (e.target.id === "most-popular")
+            setLink2(true);
     };
 
     const linkMouseOutHandler = (e) => {
-        if (e.target.nodeName === "A")
-            e.target.parentElement.classList.remove('hovered');
+        if (e.target.id === "home" && (location.pathname !== "/" && location.pathname !== "/home"))
+            setLink1(false);
+        else if (e.target.id === "most-popular" && location.pathname !== "/most-popular")
+            setLink2(false);
     };
 
     return (
@@ -39,6 +50,9 @@ const NavBar = (props) => {
                         id="home"
                         onMouseOver={linkMouseOverHandler}
                         onMouseOut={linkMouseOutHandler}
+                        style={{
+                            borderBottom: link1 ? '4px solid #FE6D00' : 'none'
+                        }}
                         to="/home">Home</NavLink>
                 </li>
 
@@ -47,6 +61,9 @@ const NavBar = (props) => {
                         id="most-popular"
                         onMouseOver={linkMouseOverHandler}
                         onMouseOut={linkMouseOutHandler}
+                        style={{
+                            borderBottom: link2 ? '4px solid #FE6D00' : 'none'
+                        }}
                         to="most-popular">Most Popular</NavLink>
                 </li>
             </ul>

@@ -1,21 +1,12 @@
-import { useEffect } from 'react';
 import './Sidebar.scss';
 
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = (props) => {
-    useEffect(() => {
-        if (props.showSidebar === true) {
-            document.querySelector('.sidebar').classList.add('active');
-        }
-
-        else if (props.showSidebar === false) {
-            document.querySelector('.sidebar').classList.remove('active');
-        }
-    });
-
     return (
-        <div className="sidebar">
+        <div className="sidebar" style={{
+            transform: props.showSidebar ? 'translateY(0)' : 'translateY(-500px)'
+        }}>
             <ul>
                 <li>
                     <NavLink

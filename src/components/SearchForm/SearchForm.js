@@ -1,11 +1,13 @@
 import './SearchForm.scss';
 
+import { useRef } from 'react';
 import { connect } from 'react-redux';
 
 const SearchForm = (props) => {
+    const searchRef = useRef(null);
+
     const submitHandler = () => {
-        const input = document.querySelector('.search-input');
-        props.setSearchValue(input.value);
+        props.setSearchValue(searchRef.current.value);
     }
 
     const onSubmitHandler = (e) => {
@@ -14,9 +16,8 @@ const SearchForm = (props) => {
 
     const onEnterPress = (e) => {
         if (e.key === 'Enter') {
-            const input = document.querySelector('.search-input');
-            props.setSearchValue(input.value);
-            input.blur();
+            props.setSearchValue(searchRef.current.value);
+            e.target.blur();
         }
     }
 
@@ -24,8 +25,9 @@ const SearchForm = (props) => {
         <form className="search-form" onSubmit={onSubmitHandler}>
             <input
                 className="search-input"
-                onKeyPress={onEnterPress}
                 type="text"
+                onKeyPress={onEnterPress}
+                ref={searchRef}
                 placeholder="Search for movies..." />
             <i onClick={submitHandler} className="fas fa-search"></i>
         </form>

@@ -8,7 +8,7 @@ const MovieCard = (props) => {
 
     useEffect(() => {
         if (window.innerWidth < 900)
-            setMoreInfo(true)
+            setMoreInfo(true);
 
         const rating = document.querySelectorAll('.rating');
         rating.forEach(i => {
