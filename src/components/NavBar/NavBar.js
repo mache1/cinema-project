@@ -40,9 +40,9 @@ const NavBar = (props) => {
 
     return (
         <div className="nav">
-            <a href="/home">
+            <NavLink to="/home">
                 <img className="nav__logo logo" src={logo} alt="logo" />
-            </a>
+            </NavLink>
 
             <ul>
                 <li className="nav__item active">
