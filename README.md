@@ -1,8 +1,17 @@
-## Cinema Project
+# Cinema Project
 
-#### React app fetching an Movie API and displaying its content.
+#### You can:
+- search for movies.
+- see the most popular movies.
+- see the movie descriptoin and rating.
+---
 
-### You can
-- Search for movies
-- See the most popular movies
-- See the movie descriptoin and rating
+#### To install packages run:
+```
+npm install
+```
+
+#### To start application on localhost run:
+```
+npm start
+```
